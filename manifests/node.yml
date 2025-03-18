@@ -22,7 +22,10 @@ spec:
             - containerPort: 8080
           env:
             - name: CONNECTION_URL
-              value: "mongodb://admin:password@mongodb.react.svc.cluster.local:27017/?authSource=admin"
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-connection-secret
+                  key: CONNECTION_URL
 ---
 apiVersion: v1
 kind: Service
